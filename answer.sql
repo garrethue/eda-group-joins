@@ -75,11 +75,11 @@
 
 -- 11. How much has each customer spent in total? Customers who have spent $0 should still show up in the table. It should say 0, not NULL (research coalesce).
 -- my answer:
--- select c.id, c.first_name, c.last_name, SUM(coalesce(li.quantity,0)*coalesce(p.unit_price,0))
+-- select c.id, c.first_name, c.last_name, SUM(coalesce(li.quantity,0)*coalesce(p.unit_price,0)) as totalspent
 -- from customers c 
 -- full join addresses a on c.id=a.customer_id
 -- full join orders o on a.id = o.address_id
 -- full join line_items li on o.id=li.order_id
 -- full join products p on li.product_id=p.id
 -- group by c.id
--- order by c.id;
+-- order by totalspent desc;
